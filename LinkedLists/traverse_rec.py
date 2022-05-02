@@ -16,10 +16,8 @@ b.next = c
 c.next = d
 d.next = e
 
-def traverse_itt(head):
-    current = head
-    while (current):
-        print(current.value)
-        current = current.next
 
-    
+def traverse_rec(head):
+    if head == None : return None
+    print(head.value)
+    return traverse_rec(head.next)
