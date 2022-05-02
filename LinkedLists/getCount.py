@@ -28,38 +28,3 @@ def get_count(head):
     return count
 
 
-
-# def find_min_max(head):
-#     current = head
-#     min=0
-#     for i in range(lenght_llist(head)-1):
-#         next = current.next
-#         if current.value > next.value:
-#             min = next.value
-#             max=current.value
-        
-#         current = current.next
-    
-#     return f'min e {min},max e {max}'
-
-
-# find_min_max(a)
-#print(current.value)
-# def sort_list(head):
-#     head = head
-#     while head != None :
-#         next = head.next
-
-#         if next.value < head.value:
-#             head = next
-#             head.next = head
-#             print(head.value)
-#         else:
-#             head=head.next
-#     print(head.value)
-        
-        
-        
-    
-#sort_list(a)
-
