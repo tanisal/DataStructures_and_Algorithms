@@ -4,7 +4,9 @@ class Node():
     def __init__(self,value):
         self.value = value
         self.next = None
-# The dame as Linkilst class, chich will contain Node objects
+
+
+# Linklist class, which will contain Node objects
 class LinkList():
     def __init__(self):
         self.head = None
