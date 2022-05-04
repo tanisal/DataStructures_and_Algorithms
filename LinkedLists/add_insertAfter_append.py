@@ -56,7 +56,7 @@ class LinkedList():
             # otherwise we set the current node
             current=self.head
             #till the current node exists:
-            while (current):
+            while (current.next):
                 # We traverse trough the list
                 current = current.next
             # And when we go to the end of it we assign the next node to be the new one
@@ -71,6 +71,9 @@ if __name__ == '__main__':
     llist.add_infront(6)
 
     llist.add_infront(12)
+
+    llist.append(27)
+
     llist.insert_node_after(llist.head.next,54)
 
     llist.printList()

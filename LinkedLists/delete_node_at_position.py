@@ -1,4 +1,3 @@
-
 #Initialising Node class
 class Node():
     def __init__(self,value):
@@ -14,26 +13,38 @@ class LinkList():
         while (current):
             print(current.value)
             current = current.next
-
-
-    def delete_node(self,node):
-        #Store head node
-        current = self.head
-        # If the node is not empty and 
-        if current and current.value == node:
-            self.head = current.next
-            current = None
-            return
-
-        while current and current.value != node:
-            prev = current
-            current = current.next
-        if current is None:
-            return
-        prev.next = current.next
-        current = None
-
     
+    #Iterative remove node at position
+    def delete_node_at_position(self,position):
+        
+        current = self.head
+
+        if position == 0:
+            self.head=current.next
+            current=None
+        
+        count = 0
+        prev=None
+        while current and position!=count:
+            prev=current
+            count+=1
+            current=current.next
+        
+        if current is None:
+                return
+        
+        prev.next=current.next
+        current= None
+
+# # Recursively delete node at k position
+
+def delete_node_rec(head,k):
+    if k ==1 : return head.next
+    if k<0 : return head
+    if head == None:
+            return
+    head.next = delete_node_rec(head.next,k-1)
+    return head
 
 
 if __name__ == '__main__':
@@ -51,6 +62,6 @@ if __name__ == '__main__':
 
     print ("Created Linked List: ")
     llist.print_list()
-    llist.delete_node(10)
-    print ("\nLinked List after Deletion of 10:")
+    llist.delete_node_at_position(0)
+    print ("\nLinked List after Deletion of position n:")
     llist.print_list()
