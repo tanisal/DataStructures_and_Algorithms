@@ -1,4 +1,4 @@
-def findRotation(nums):
+def findRotation(nums,n):
     index = 0
     while index<n:
         if index>0 and nums[index-1]>nums[index]:
@@ -28,10 +28,37 @@ def findRotation_optimised(nums,n):
         elif nums[mid]>=nums[low]: low=low+1
     return -1    
 
+def binarySearch(nums,low,high,key):
+    #base cases
+    if high<low:
+        return -1
+    #defining middle of the array
+    mid= (low+high)//2
+    # aNother base case, if middle is the key
+    if nums[mid]==key:
+        return mid
+     #Otherwise   
+    if key > nums[mid]:
+        return binarySearch(nums,mid+1,high,key)
+    return binarySearch(nums,low,mid-1,key)
+
+
+def pivotedBinarySearch(nums,n,key):
+
+    pivot = findRotation_optimised(nums,n)
+
+    #If there is no pivot, then the list is not sorted
+    if pivot == -1 :
+        return binarySearch(nums,0,len(nums)-1,key)
+    
+    # If we found a pivot. Compare the pivot and then search in both parts
+    if nums[pivot] == key:
+        return pivot
+    if nums[0]<=key:
+        return binarySearch(nums,0,pivot-1,key)
+    return binarySearch(nums,pivot +1,len(nums)-1,key)
 
 
 
-
-A=[6,7,8,9,1,2,3,4,5]
-
-findRotation_optimised(A,9)
+nums=[5, 6, 7, 1, 2, 3, 4]
+n=len(nums)
