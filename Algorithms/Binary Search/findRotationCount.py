@@ -60,5 +60,7 @@ def pivotedBinarySearch(nums,n,key):
 
 
 
-nums=[5, 6, 7, 1, 2, 3, 4]
+nums=[5, 6, 9, 0, 2, 3, 4]
 n=len(nums)
+
+pivotedBinarySearch(nums,n,key=2)
