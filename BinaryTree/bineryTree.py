@@ -21,11 +21,11 @@ a.left= b
 a.right = c
 b.left = d
 b.right = e
-e.left =j
+#e.left =j
 e.right=h 
 f.left=g
 c.left = f
-#f.right=j
+c.right=j
 
 
 
@@ -303,8 +303,7 @@ def reverse_level_order(root):
             queue.append(current.right)
     return stack
 
-#Print the lesf side of the binary tree
-
+#Print the left side of the binary tree
 def left_side(root):
     queue=deque([root])
     while len(queue): 
@@ -317,6 +316,69 @@ def left_side(root):
                 queue.append(current.left)
             if current.right:
                 queue.append(current.right)
-left_side(a)
 
 
+# Average Sum bu level order, traverse method with 2 Queues
+def average_sum_level_order(root):
+    if root is None: return
+    queue1=deque([root])
+    queue2=deque([])
+    while queue1 or queue2:
+        sum_q1=0
+        count=0
+        while queue1:
+            current=queue1.popleft()
+            sum_q1 += current.val
+            count+=1
+            if current.left:
+                queue2.append(current.left)
+            if current.right:
+                queue2.append(current.right)
+        print(sum_q1/count)
+        sum_q1=0
+
+        sum_q2=0
+        count=0
+        while queue2:
+            current=queue2.popleft()
+            sum_q2 += current.val
+            count+=1
+            if current.left:
+                queue1.append(current.left)
+            if current.right:
+                queue1.append(current.right)
+        print(sum_q2/count)
+        sum_q2= 0
+    
+#average_sum_level_order(a)  
+
+# Mirror a binary tree
+def mirror_tree(root):
+    if root is None: return
+    left =root.left
+    root.left=root.right
+    root.right=left
+
+    mirror_tree(root.left)
+    mirror_tree(root.right)
+
+#mirror_tree(a)
+#print_all_elements(a)  
+
+# height of a tree itaratively
+def height_itt(root):
+    if root is None: return 0
+    queue=deque([root])
+    height=0
+    while queue:
+        num_nodes=len(queue)
+        height+=1
+        while num_nodes:
+            current=queue.popleft()
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+            num_nodes-=1
+    print(height)
+height_itt(a)
