@@ -30,7 +30,7 @@ c.right=j
 
 
 
-# Iterative Solution
+# DEpth traversal binary tree , Iterative Solution
 def depthFirstValues(root):
     if root is None:
         return []
@@ -48,14 +48,14 @@ def depthFirstValues(root):
 #depthFirstValues(a)
 
 
-#Recursive Solution
+#DEpth traversal , Recursive Solution
 def depthFirstValues_Rec(root):
     if root is None: return []
     left_values = depthFirstValues_Rec(root.left)
     right_values = depthFirstValues_Rec(root.right)
     return [root.val,*left_values,*right_values]
 
-#Iteration Solution with O(n) complexity using deque as inserting the fornt of the queue
+#Breath Travesal , Iteration Solution with O(n) complexity using deque as inserting the fornt of the queue
 def breathFirstValues(root):
     queue = deque([root])
     values=[]
@@ -168,9 +168,6 @@ def print_all_paths(root):
 #print_all_paths(a)
 
 
-
-
-
 #Find a path from root to a given target recursively
 def tree_path(root,arr,target):
 
@@ -196,10 +193,6 @@ def print_tree_path(root,target):
     else:
         print("there is no Path")
 
-# Height of a tree, or  maxdepth recursively
-def height_tree_rec(root):
-    if root is None: return -1
-    return 1 + max(height_tree_rec(root.left),height_tree_rec(root.right))
 
 # Number of nodes in binary tree
 def number_nodes(root):
@@ -257,7 +250,7 @@ def print_all_level_order(root):
 
 #print_all_level_order(a)
 
-#Printing the nodes at agiven level, solution is iterative . complexity O(n)
+#Printing the nodes at a given level, solution is iterative . complexity O(n)
 def print_elements_at_given_level(root,klevel):
     if root is None: return
     queue = deque([root,None]) #We add the second None, to keep track when to add to the level
@@ -381,4 +374,29 @@ def height_itt(root):
                 queue.append(current.right)
             num_nodes-=1
     print(height)
-height_itt(a)
+#height_itt(a)
+
+# Height of a tree, or  maxdepth recursively
+def height_tree_rec(root):
+    if root is None: return -1
+    return 1 + max(height_tree_rec(root.left),height_tree_rec(root.right))
+
+
+#Get a level at a given node
+def get_level_of_node(root,node):
+    if root is None:return 
+    queue=deque([root])
+    level=0
+    while queue:
+        level+=1
+        num_nodes=len(queue)
+        while num_nodes:
+            current=queue.popleft()
+            if current.val == node:
+                print(level)
+                break
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+            num_nodes-=1
