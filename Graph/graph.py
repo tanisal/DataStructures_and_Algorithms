@@ -209,14 +209,14 @@ grid = [
 
 
 def island_count(grid):
-      visited=set()
-  count=0
-  #nested loops fo the traversal
-  for r in range(len(grid)):
-    for c in range(len(grid[0])):
-      if explore(grid,r,c,visited)== True:
-        count+=1
-  return count
+    visited=set()
+    count=0
+    #nested loops fo the traversal
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            if explore(grid,r,c,visited)== True:
+                count+=1
+    return count
     
     
 def explore(grid,r , c,visited):
@@ -241,3 +241,42 @@ def explore(grid,r , c,visited):
   explore(grid,r,c-1,visited)
   explore(grid,r,c+1,visited)
   return True
+
+
+#--------------------------Find smallest island in the grid-----------------------------------#
+def minimum_island(grid):
+    visited=set()
+    min_island=float("inf")
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            size=explore_grid(grid,r ,c,visited)
+            if 0<size<min_island:
+                min_island=size
+    return min_island
+      
+      
+  
+  
+  
+  
+def explore_grid(grid,r ,c, visited):
+  row_inbounds= 0<=r<len(grid)
+  col_inbounds=0<=c<len(grid[0])
+  
+  if not row_inbounds or not col_inbounds:
+    return 0
+  
+  if grid[r][c]=='W':
+    return 0
+  pos=(r,c)
+  if pos in visited:
+    return 0
+  
+  visited.add(pos)
+  size=1
+  size += explore_grid(grid,r-1,c ,visited)
+  size += explore_grid(grid,r+1,c ,visited)
+  size += explore_grid(grid,r,c-1 ,visited)
+  size += explore_grid(grid,r,c+1 ,visited)
+    
+  return size
